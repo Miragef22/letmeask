@@ -1,0 +1,11 @@
+{
+  "name": "react-rotas",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "react-router-dom": "^6.0.2"
+  },
+  "devDependencies": {
+    "@types/react-router": "^5.1.17"
+  }
+}
