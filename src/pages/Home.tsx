@@ -14,22 +14,24 @@ import { useNavigate } from 'react-router-dom';
 import { auth, firebase } from '../services/firebase'
 
 
+//Importando contexto
+import{ useAuth} from '../hooks/useAuth'
+
+
 export function Home(){
 
     const navigate = useNavigate();
+    const { user, singInWithGoogle } = useAuth();
+
+
+    async function handleCreateRoom() {
+
+        if (!user){
+            await singInWithGoogle();
+        }
+        
+        navigate('/rooms/new');
     
-    function handleCreateRoom() {
-
-        //cria um objeto para autenticaçao do google
-        const provider = new firebase.auth.GoogleAuthProvider();
-
-        provider.addScope('profile');
-        provider.addScope('email');
-
-        firebase.auth().signInWithPopup(provider).then(result =>{
-            console.log(result);
-        })
-        //navigate('/rooms/new');
     }
 
     return(
